@@ -40,7 +40,7 @@ export function DiveRunner({ ticker, pendingId, pendingMode, label = 'Run a deep
       <div className="runner">
         <div className="runner-busy" role="status">
           <span className="clock" aria-hidden="true" />
-          <div><b>Deep dive requested for {ticker}</b><span className="muted">It will be ready after the next research run: weekdays at 7:46am, 10:52am and 2:52pm. Or ask Claude to run your Inospot deep dive requests now.</span></div>
+          <div><b>Deep dive requested for {ticker}</b><span className="muted">It will be ready after the next research run, weekdays at 10:52am and 2:52pm. Or ask Claude to run your Inospot deep dive requests now.</span></div>
         </div>
       </div>
     );
