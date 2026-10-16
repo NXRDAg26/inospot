@@ -49,6 +49,18 @@ const TOOLS = [
     },
   },
   {
+    name: 'update_latest_scan',
+    description:
+      'Add or replace the optional markets and/or insights arrays on the scan Inospot is currently showing, without resending the rest. Saves a new copy and sends no alert.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        markets: { type: 'array', items: { type: 'object' }, description: 'Market board tiles, same shape as in publish_scan.' },
+        insights: { type: 'array', items: { type: 'object' }, description: 'Insight boards, same shape as in publish_scan.' },
+      },
+    },
+  },
+  {
     name: 'get_latest_scan',
     description: 'Return the scan Inospot is currently showing, including every field, so it can be updated and published again.',
     inputSchema: { type: 'object', properties: {} },
@@ -64,6 +76,16 @@ const text = (t: string, isError = false) => ({ content: [{ type: 'text', text: 
 async function callTool(name: string, args: Record<string, unknown>) {
   if (name === 'get_latest_scan') {
     return text(JSON.stringify(await getScan()));
+  }
+  if (name === 'update_latest_scan') {
+    if (!hasDb()) return text('Inospot has no database connected, so nothing was saved.', true);
+    const cur = await getScan();
+    const next = { ...cur } as Scan;
+    if (Array.isArray(args.markets)) next.markets = args.markets as Scan['markets'];
+    if (Array.isArray(args.insights)) next.insights = args.insights as Scan['insights'];
+    if (!Array.isArray(args.markets) && !Array.isArray(args.insights)) return text('Pass markets and/or insights as arrays.', true);
+    const id = await saveScan(next);
+    return text(`Updated scan saved as ${id}: ${next.markets?.length ?? 0} market tiles, ${next.insights?.length ?? 0} insight boards.`);
   }
   if (name === 'publish_scan') {
     if (!hasDb()) return text('Inospot has no database connected, so the scan was not saved.', true);
