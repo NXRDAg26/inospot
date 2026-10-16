@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { IdeaRow, Range } from '@/components/Bits';
+import { InsightHero, MarketBoard } from '@/components/Board';
 import { MobileTop } from '@/components/Nav';
 import { getScan, pickOfDay, ranked } from '@/lib/data';
 import { pct, shortDate, whenLabel, daysUntil } from '@/lib/format';
@@ -65,10 +66,26 @@ export default async function Today() {
         <div className="count"><div className="v num loss">{counts.avoid}</div><div className="k">Avoid</div></div>
       </div>
 
+      {scan.markets && scan.markets.length > 0 && (
+        <section className="block">
+          <div className="block-head"><h2>Markets now</h2><Link className="more" href="/markets">All markets</Link></div>
+          <MarketBoard markets={scan.markets} group="Popular" limit={5} />
+        </section>
+      )}
+
       <section className="block">
         <div className="block-head"><h2>Also worth a look</h2><Link className="more" href="/ideas">All ideas</Link></div>
         <div className="rows">{others.map((o) => <IdeaRow key={o.ticker} o={o} />)}</div>
       </section>
+
+      {scan.insights && scan.insights.some((i) => i.kind === 'hero') && (
+        <section className="block">
+          <div className="block-head"><h2>Insights</h2><Link className="more" href="/insights">All insights</Link></div>
+          <div className="ins-heroes compact">
+            {scan.insights.filter((i) => i.kind === 'hero').map((h, i) => <InsightHero key={h.id} ins={h} i={i} />)}
+          </div>
+        </section>
+      )}
 
       <section className="block">
         <div className="block-head"><h2>Coming up</h2><Link className="more" href="/calendar">Calendar</Link></div>

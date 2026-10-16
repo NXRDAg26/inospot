@@ -1,38 +1,36 @@
+import Link from 'next/link';
+import { GROUPS, MarketBoard } from '@/components/Board';
 import { MobileTop } from '@/components/Nav';
 import { getScan } from '@/lib/data';
-import { list as split, longDate, shortDate } from '@/lib/format';
+import { longDate, shortDate } from '@/lib/format';
 
-export default async function Markets() {
+export default async function Markets({ searchParams }: { searchParams: { g?: string } }) {
   const scan = await getScan();
+  const markets = scan.markets ?? [];
+  const g = (GROUPS as readonly string[]).includes(searchParams.g ?? '') ? searchParams.g! : 'Popular';
   const n = scan.note;
-  const news = [...scan.news].sort((a, b) => a.rank - b.rank);
-  const max = Math.max(...news.map((x) => x.score), 1);
   return (
-    <div className="page">
+    <div className="page wide">
       <MobileTop />
-      <div className="stamp">Morning note, {longDate(n.date)}</div>
-      <h1 className="note-h" style={{ marginTop: 10 }}>{n.top_title}</h1>
-      <p className="muted" style={{ marginTop: 10, fontWeight: 650 }}>Market mood: {n.regime}</p>
-      <p className="lead">{n.top_call}</p>
+      <header className="ph">
+        <div className="stamp">Prices from the {shortDate(scan.scanned_at)} scan</div>
+        <h1 style={{ marginTop: 6 }}>Markets</h1>
+        <p>Indices, commodities, currencies and bonds at a glance. Tap any tile for the detail.</p>
+      </header>
 
-      <section className="block cols2">
-        <div><h3 className="small">Overnight</h3><ul className="points">{split(n.developments).map((p) => <li key={p}>{p}</li>)}</ul></div>
-        <div><h3 className="small">Dates ahead</h3><ul className="points">{split(n.events).map((p) => <li key={p}>{p}</li>)}</ul></div>
-      </section>
+      {markets.length ? (
+        <MarketBoard markets={markets} group={g} hrefFor={(x) => (x === 'Popular' ? '/markets' : `/markets?g=${encodeURIComponent(x)}`)} />
+      ) : (
+        <p className="muted">Market prices arrive with the next morning scan.</p>
+      )}
 
-      <div className="trade"><b>Trade idea</b>{n.trade}</div>
+      <Link href="/markets/note" className="note-card">
+        <span className="stamp">Morning note, {longDate(n.date)}</span>
+        <span className="note-card-t">{n.top_title}</span>
+        <span className="muted">Market mood: {n.regime}. Read the note and what moved markets.</span>
+      </Link>
 
-      <section className="block">
-        <div className="block-head"><h2>What moved markets</h2><span className="muted" style={{ fontSize: 14 }}>Last 10 days, by impact</span></div>
-        {news.map((x) => (
-          <div className="impact" key={x.rank}>
-            <div className="impact-top"><span className="t">{x.event}</span><span className="num" style={{ fontSize: 15 }}>{x.score.toFixed(1)}</span></div>
-            <div className="bar"><i style={{ width: `${(x.score / max) * 100}%` }} /></div>
-            <div className="x">{x.reaction}. {x.read}. <a href={x.source_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cobalt)', fontWeight: 700 }}>{shortDate(x.date)} source</a></div>
-          </div>
-        ))}
-        <p className="foot">Impact weighs how far prices moved, how many markets moved, and whether the news signals a lasting shift.</p>
-      </section>
+      <p className="foot">Prices are closing or early-morning levels captured by the scan, not live quotes. Index charts follow the matching tracker fund, so the shape is right even where the level is the index.</p>
     </div>
   );
 }

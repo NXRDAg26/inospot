@@ -21,7 +21,22 @@ export const IconBell = () => (
 export const IconBack = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" {...s}><path d="m15 5-7 7 7 7" /></svg>
 );
-export const Mark = ({ size = 18 }: { size?: number }) => (
+export const IconInsights = () => (
+  <svg viewBox="0 0 24 24" {...s}><path d="m3.5 17 5-5.5 4 3 7.5-8" /><path d="M17 6.5h3v3" /><path d="M5 5.5v2M4 6.5h2" /></svg>
+);
+
+const INS: Record<string, JSX.Element> = {
+  candles: <><path d="M7 4v16M17 4v16" /><rect x="4.5" y="8" width="5" height="8" rx="1" /><rect x="14.5" y="6" width="5" height="7" rx="1" /></>,
+  eye: <><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" /><circle cx="12" cy="12" r="3" /></>,
+  bookmark: <path d="M6.5 3.5h11v17L12 16.5l-5.5 4Z" />,
+  chart: <path d="M6 19v-6M12 19V6M18 19v-9" />,
+  trend: <><path d="m3.5 16.5 5.5-5.5 4 4 7.5-7.5" /><path d="M15 7.5h5.5V13" /></>,
+  layers: <><path d="m12 3.5 9 4.5-9 4.5L3 8Z" /><path d="m3 12 9 4.5 9-4.5" /><path d="m3 16 9 4.5 9-4.5" /></>,
+};
+export const InsightIcon = ({ name }: { name: string }) => (
+  <svg viewBox="0 0 24 24" width="24" height="24" {...s}>{INS[name] ?? INS.chart}</svg>
+);
+export const Mark =({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="8" stroke="#fff" strokeWidth="2.4" />
     <circle cx="12" cy="12" r="3" fill="#fff" />

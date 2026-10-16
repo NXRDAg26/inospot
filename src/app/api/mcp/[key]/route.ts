@@ -14,7 +14,7 @@ const TOOLS = [
     name: 'publish_scan',
     description:
       'Publish the Inospot morning scan. Replaces what the app shows and sends a push alert with the pick of the day. ' +
-      'Pass the whole scan: opps (ideas), note (morning note object), news, calendar, watch (watchlist) and themes, using the same fields as get_latest_scan returns.',
+      'Pass the whole scan: opps (ideas), note (morning note object), news, calendar, watch (watchlist), themes, and optionally markets (market board) and insights (ranked boards), using the same fields as get_latest_scan returns.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -28,6 +28,18 @@ const TOOLS = [
             calendar: { type: 'array', items: { type: 'object' } },
             watch: { type: 'array', items: { type: 'object' } },
             themes: { type: 'array', items: { type: 'object' } },
+            markets: {
+              type: 'array',
+              items: { type: 'object' },
+              description:
+                'Optional market board tiles: { id, name, symbol, group (Indices|Commodities|Currencies|Bonds|Countries|Sectors), price, unit ($|%|empty), decimals, change_1d, change_5d, change_1m, change_ytd, series (about 30 daily closes, oldest first), series_note, popular, featured (one tile), read }',
+            },
+            insights: {
+              type: 'array',
+              items: { type: 'object' },
+              description:
+                'Optional ranked insight boards: { id, title, kind (hero|pair), icon (candles|eye|bookmark|chart|trend|layers), measure, basis, period, format (pct|pct0|num|vol|score), split_labels ([left,right]), blurb, pair (shared key for a pair), rows: [{ name, ticker, href, value, display, split ([left,middle,right] counts), change_1d, price, ccy, unit, decimals, note }] }',
+            },
           },
           required: ['opps', 'note', 'news', 'calendar', 'watch', 'themes'],
         },

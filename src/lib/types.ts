@@ -96,6 +96,57 @@ export interface Scan {
   calendar: CalendarItem[];
   watch: WatchItem[];
   themes: Theme[];
+  markets?: MarketTile[];
+  insights?: Insight[];
+}
+
+export interface MarketTile {
+  id: string;
+  name: string;
+  symbol: string;
+  group: string; // Indices, Commodities, Currencies, Bonds, Countries, Sectors
+  price: number;
+  unit?: string; // '$', '%', or ''
+  decimals?: number;
+  change_1d: number | null;
+  change_5d: number | null;
+  change_1m: number | null;
+  change_ytd: number | null;
+  series?: number[]; // oldest to newest, roughly 30 daily closes
+  series_note?: string;
+  popular?: boolean;
+  featured?: boolean;
+  read?: string;
+}
+
+export interface InsightRow {
+  name: string;
+  ticker?: string;
+  href?: string | null;
+  value: number;
+  display?: string | null;
+  split?: number[] | null; // [left, middle, right] counts, e.g. [sell, hold, buy]
+  change_1d?: number | null;
+  price?: number | null;
+  ccy?: string;
+  unit?: string;
+  decimals?: number;
+  note?: string | null;
+}
+
+export interface Insight {
+  id: string;
+  title: string;
+  kind: 'hero' | 'pair';
+  icon: string;
+  measure: string;
+  basis: string;
+  period: string;
+  format: 'pct' | 'pct0' | 'num' | 'vol' | 'score';
+  split_labels?: string[] | null;
+  blurb?: string;
+  pair?: string | null;
+  rows: InsightRow[];
 }
 
 export type RankedIdea = Idea & { score: number; rank: number };

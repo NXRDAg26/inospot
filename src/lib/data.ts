@@ -49,6 +49,9 @@ export function validateScan(s: unknown): string | null {
     if (!Array.isArray(o[k])) return `scan.${k} must be an array`;
   }
   if (!o.note || typeof o.note !== 'object') return 'scan.note must be an object';
+  for (const k of ['markets', 'insights']) {
+    if (o[k] !== undefined && !Array.isArray(o[k])) return `scan.${k} must be an array when present`;
+  }
   if ((o.opps as unknown[]).length === 0) return 'scan.opps must contain at least one idea';
   return null;
 }
