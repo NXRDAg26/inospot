@@ -1,0 +1,1244 @@
+{
+ "alerts": [
+  {
+   "ticker": "MRNA",
+   "name": "Moderna",
+   "market": "US",
+   "kind": "Breakout",
+   "strength": "Strong",
+   "stance": "Opportunity",
+   "price": 236.5,
+   "ccy": "$",
+   "change_1d": 4.51,
+   "change_5d": 18.84,
+   "chart_symbol": "MRNA",
+   "headline": "Up 18.8% in five days, within 2% of its 52-week high, a week before its melanoma data",
+   "why": "Money rotating out of AI into healthcare and a Goldman Sachs target rise to $137 lifted the shares 4.5% on Thursday. The stock is up about 700% this year, so the Phase 3 readout at ESMO on 24 Oct is a binary test.",
+   "check": "Whether the move is priced for perfection: the average analyst target is $117 against a $236.50 price, and 6 of 29 analysts say sell.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron Technology",
+   "market": "US",
+   "kind": "Sell-off",
+   "strength": "Strong",
+   "stance": "Opportunity",
+   "price": 931.24,
+   "ccy": "$",
+   "change_1d": 1.87,
+   "change_5d": -11.66,
+   "chart_symbol": "MU",
+   "headline": "Down 11.7% in five days on an unverified Chinese memory claim, then up 1.9% on Thursday",
+   "why": "Reports of a CXMT DRAM breakthrough and a possible strike at its Taiwan plant left the shares about 25% below June’s record. 58 of 70 analysts still rate it a buy, with an average target of $1,589.",
+   "check": "Whether memory contract prices hold and the Taiwan union talks settle without a strike.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave",
+   "market": "US",
+   "kind": "Unusual volume",
+   "strength": "Strong",
+   "stance": "Caution",
+   "price": 69.69,
+   "ccy": "$",
+   "change_1d": 5.94,
+   "change_5d": -15.78,
+   "chart_symbol": "CRWV",
+   "headline": "128.9m shares traded, over four times normal, while its bonds trade at distressed levels",
+   "why": "Credit default swaps above 1,000 basis points and a 2031 bond yielding close to 16% drove a 15% one-day fall earlier in the week. Thursday’s 5.9% bounce came with ARK buying, but the credit stress has not eased.",
+   "check": "Credit spreads and any refinancing news before Q3 results on 9 Nov. Treat bounces with care.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  },
+  {
+   "ticker": "BRBY",
+   "name": "Burberry",
+   "market": "UK",
+   "kind": "Breakout",
+   "strength": "Watch",
+   "stance": "Opportunity",
+   "price": 1111.5,
+   "ccy": "GBp",
+   "change_1d": 0.86,
+   "change_5d": 8.92,
+   "chart_symbol": "BRBY.L",
+   "headline": "Up 8.9% in five days as Frasers Group lifts its stake to 7.4%",
+   "why": "Frasers increased its exposure twice in a week, held through put options rather than shares. Brokers remain cautious on luxury demand after RBC and HSBC downgrades in September.",
+   "check": "Further stake disclosures, and whether Frasers turns its options into shares.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  },
+  {
+   "ticker": "ROP",
+   "name": "Roper Technologies",
+   "market": "US",
+   "kind": "Pre-results",
+   "strength": "Watch",
+   "stance": "Opportunity",
+   "price": 382.45,
+   "ccy": "$",
+   "change_1d": 2.62,
+   "change_5d": 4.72,
+   "chart_symbol": "ROP",
+   "headline": "Up 4.7% in five days into Q3 results on 22 Oct",
+   "why": "Roper rose 2.6% on Thursday as investors rotated into steadier software and industrial names. It is still 26% below its 52-week high and 14% down this year.",
+   "check": "Organic growth and full-year guidance in the 22 Oct results.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  },
+  {
+   "ticker": "VLO",
+   "name": "Valero Energy",
+   "market": "US",
+   "kind": "Sell-off",
+   "strength": "Watch",
+   "stance": "Opportunity",
+   "price": 444.06,
+   "ccy": "$",
+   "change_1d": -3.42,
+   "change_5d": 0.81,
+   "chart_symbol": "VLO",
+   "headline": "Fell 3.4% on Thursday from just below its record high, a week before Q3 results",
+   "why": "US crude eased 2.3% and commentators questioned whether a sevenfold run is fully priced, even after Citi and Wells Fargo lifted targets to $485. The shares sit 4% below the 52-week high of $461.52.",
+   "check": "Diesel margins and the size of buybacks in the 22 Oct results.",
+   "created_at": "2026-10-16T08:40:00.000Z"
+  }
+ ],
+ "dives": [
+  {
+   "ticker": "MRNA",
+   "name": "Moderna",
+   "exchange": "NASDAQ",
+   "currency": "$",
+   "chart_symbol": "MRNA",
+   "bench_symbol": "SPY",
+   "bench_name": "S&P 500",
+   "market": "US",
+   "sector": "Biotechnology",
+   "price": 236.5,
+   "change_1d": 4.51,
+   "range_52w": {
+    "low": 22.28,
+    "high": 242.29
+   },
+   "verdict": "Wait for a better entry",
+   "verdict_line": "The cancer vaccine story is real, but after a sevenfold rise the shares already price in a strong result on 24 Oct.",
+   "summary": "Moderna makes mRNA vaccines and medicines, and its personalised melanoma vaccine with Merck has transformed sentiment this year. The shares hit fresh 52-week highs this week as investors rotated from AI into healthcare and Goldman Sachs lifted its target. Phase 3 results at the ESMO congress on 24 Oct are the next big test, with Q3 results on 6 Nov.",
+   "why_moving": "A 4.5% rise on Thursday came as money left AI and chip stocks for healthcare, alongside a Goldman target increase to $137 from $120. The FDA approval of its first mRNA flu shot this week added to the momentum.",
+   "opportunity": 60,
+   "risk": 75,
+   "ret_bear": -35,
+   "ret_base": 5,
+   "ret_bull": 35,
+   "horizon": "Near term, around the 24 Oct data",
+   "bull_case": [
+    "Earlier late-stage data showed a statistically significant cut in melanoma recurrence",
+    "First mRNA flu vaccine approved by the FDA this week",
+    "Merck says manufacturing of the cancer vaccine is getting faster",
+    "Healthcare is the market’s strongest sector this month"
+   ],
+   "bear_case": [
+    "Average analyst target of $117 is half the share price",
+    "6 of 29 analysts rate it a sell and Citi cut it to sell in late September",
+    "A binary readout: weak data would reverse much of the run",
+    "Still loss-making, with core COVID vaccine sales under pressure"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "$94.4bn"
+    },
+    {
+     "label": "Beta",
+     "value": "0.90",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "15.9m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "$148.05"
+    },
+    {
+     "label": "200-day average",
+     "value": "$75.43"
+    },
+    {
+     "label": "Average analyst target",
+     "value": "$117.40"
+    },
+    {
+     "label": "This year",
+     "value": "+702%"
+    },
+    {
+     "label": "Analyst target range",
+     "value": "$25 to $245"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": 4.51,
+     "bench": 0.33
+    },
+    {
+     "label": "5 days",
+     "stock": 18.84,
+     "bench": -0.86
+    },
+    {
+     "label": "1 month",
+     "stock": 62.41,
+     "bench": 2.55
+    },
+    {
+     "label": "3 months",
+     "stock": 274.51,
+     "bench": 3.84
+    },
+    {
+     "label": "6 months",
+     "stock": 332.52,
+     "bench": 9.98
+    },
+    {
+     "label": "This year",
+     "stock": 701.97,
+     "bench": 13.13
+    },
+    {
+     "label": "1 year",
+     "stock": 771.41,
+     "bench": 16.82
+    }
+   ],
+   "analysts": {
+    "buy": 8,
+    "hold": 15,
+    "sell": 6,
+    "target_low": 25,
+    "target_mean": 117.4,
+    "target_high": 245
+   },
+   "sentiment": {
+    "tone": "Bullish",
+    "bullish": 24,
+    "bearish": 3,
+    "stories_90d": 5792,
+    "attention_change": -44.05,
+    "note": "24 positive and 3 negative stories this week, though overall coverage is down 44% on last month."
+   },
+   "news": [
+    {
+     "date": "2026-10-15",
+     "title": "Moderna hits a 52-week high as Goldman raises its target ahead of melanoma data",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/mrna-stock-hits-fresh-52-194242646.html",
+     "tone": "Positive",
+     "why": "Sets up the 24 Oct readout as the key event"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Moderna rallies 6% as money rotates into healthcare",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/healthcare/articles/moderna-rallies-6-money-rotates-165505631.html",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "FDA approves Moderna’s mRNA flu shot",
+     "source": "Good Morning America",
+     "url": "https://www.goodmorningamerica.com/video/135417523",
+     "tone": "Positive",
+     "why": "Validates the platform beyond COVID"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Merck expects faster manufacturing for the cancer vaccine",
+     "source": "Finwire",
+     "url": "https://www.cnbc.com/2026/10/14/merck-moderna-cancer-vaccine-manufacturing-time.html",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Executive files to sell 39,145 shares",
+     "source": "Kalkine Media",
+     "url": "https://kalkinemedia.com/us/news/announcements/moderna-executive-stephen-hoge-announces-intent-to-sell-39145-shares-under-rule-144",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "Citigroup cuts Moderna to sell",
+     "source": "Alliance News",
+     "tone": "Negative",
+     "why": "The most bearish broker view on the stock"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-24",
+     "event": "Phase 3 melanoma results at ESMO"
+    },
+    {
+     "date": "2026-10-28",
+     "event": "Fed rate decision"
+    },
+    {
+     "date": "2026-11-06",
+     "event": "Q3 results"
+    }
+   ],
+   "watch": [
+    "The ESMO data on 24 Oct: recurrence benefit and safety",
+    "Any sign that money flows back from healthcare into AI stocks",
+    "Further insider selling"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Yahoo Finance: Moderna hits fresh 52-week highs",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/mrna-stock-hits-fresh-52-194242646.html"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron Technology",
+   "exchange": "NASDAQ",
+   "currency": "$",
+   "chart_symbol": "MU",
+   "bench_symbol": "SPY",
+   "bench_name": "S&P 500",
+   "market": "US",
+   "sector": "Semiconductors",
+   "price": 931.24,
+   "change_1d": 1.87,
+   "range_52w": {
+    "low": 192.4,
+    "high": 1255
+   },
+   "verdict": "Worth a closer look",
+   "verdict_line": "A sharp sell-off on an unverified threat, while demand for its AI memory is booked out into 2027.",
+   "summary": "Micron makes DRAM and NAND memory, including the high-bandwidth memory used in AI servers, and the shares are up more than 200% this year. They have fallen about 25% from June’s record on fears that Chinese rival CXMT has closed the technology gap and on a strike threat at its Taiwan plant. Management says customers have reserved its HBM capacity through 2027, and analysts remain overwhelmingly positive.",
+   "why_moving": "The shares fell 11.7% in five days after reports of a CXMT breakthrough and a Broadcom warning hit memory stocks, then rose 1.9% on Thursday while the wider chip index fell. Korean memory makers rebounded more than 4% on Friday.",
+   "opportunity": 76,
+   "risk": 70,
+   "ret_bear": -20,
+   "ret_base": 15,
+   "ret_bull": 40,
+   "horizon": "3 to 6 months",
+   "bull_case": [
+    "58 of 70 analysts rate it a buy; average target $1,589",
+    "HBM capacity reported as reserved by customers through 2027",
+    "New advanced packaging plant in Taiwan has started operating",
+    "Memory price forecasts still rising into Q4"
+   ],
+   "bear_case": [
+    "CXMT now holds roughly 10% of DRAM and is growing",
+    "Union at its Taiwan plant has voted to strike",
+    "Very volatile: beta of 2.2 after a 226% gain this year",
+    "A Fed hike on 28 Oct could hit high-growth tech again"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "$1.05tn"
+    },
+    {
+     "label": "Beta",
+     "value": "2.23",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "37.8m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "$983.17"
+    },
+    {
+     "label": "200-day average",
+     "value": "$714.91"
+    },
+    {
+     "label": "Average analyst target",
+     "value": "$1,588.85"
+    },
+    {
+     "label": "This year",
+     "value": "+226%"
+    },
+    {
+     "label": "Analyst target range",
+     "value": "$1,200 to $3,000"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": 1.87,
+     "bench": 0.33
+    },
+    {
+     "label": "5 days",
+     "stock": -11.66,
+     "bench": -0.86
+    },
+    {
+     "label": "1 month",
+     "stock": 0.51,
+     "bench": 2.55
+    },
+    {
+     "label": "3 months",
+     "stock": 9.15,
+     "bench": 3.84
+    },
+    {
+     "label": "6 months",
+     "stock": 103.67,
+     "bench": 9.98
+    },
+    {
+     "label": "This year",
+     "stock": 226.28,
+     "bench": 13.13
+    },
+    {
+     "label": "1 year",
+     "stock": 359.8,
+     "bench": 16.82
+    }
+   ],
+   "analysts": {
+    "buy": 58,
+    "hold": 10,
+    "sell": 2,
+    "target_low": 1200,
+    "target_mean": 1588.85,
+    "target_high": 3000
+   },
+   "sentiment": {
+    "tone": "Mixed",
+    "bullish": 15,
+    "bearish": 17,
+    "stories_90d": 25120,
+    "attention_change": -11.1,
+    "note": "Coverage split almost evenly this week: plant openings and buy calls against China and strike worries."
+   },
+   "news": [
+    {
+     "date": "2026-10-16",
+     "title": "Micron opens its second advanced packaging plant in Taiwan",
+     "source": "Yonhap News",
+     "url": "https://www.yna.co.kr/view/AKR20261016122300009",
+     "tone": "Positive",
+     "why": "Adds HBM capacity for AI demand"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "Is Chinese memory competition changing the case for Micron?",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/chinese-memory-competition-altering-investment-051632891.html",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "Micron is 25% below its June record: is it a buy?",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/micron-stock-25-below-june-075702143.html",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Taiwan’s president urges Micron and workers to negotiate as strike looms",
+     "source": "Straits Times",
+     "url": "https://www.straitstimes.com/asia/taiwan-president-calls-for-micron-workers-to-negotiate-sincerely-ahead-of-possible-strike?ref=latest-headlines",
+     "tone": "Negative",
+     "why": "A strike would disrupt supply"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "Micron hit by China fears; Jim Cramer calls the selloff nonsense",
+     "source": "Benzinga",
+     "url": "https://www.benzinga.com/node/62346389?utm_campaign=partner_feed&utm_medium=feed&utm_source=ravenpack",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-10-07",
+     "title": "DA Davidson raises its target to $3,000 and reiterates buy",
+     "source": "Finwire",
+     "tone": "Positive"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-28",
+     "event": "Fed rate decision"
+    }
+   ],
+   "watch": [
+    "Independent confirmation, or not, of CXMT’s claimed breakthrough",
+    "Outcome of the Taiwan union talks",
+    "Memory contract price data for Q4"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Yonhap: Micron starts operations at Taichung plant",
+     "url": "https://www.yna.co.kr/view/AKR20261016122300009"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave",
+   "exchange": "NASDAQ",
+   "currency": "$",
+   "chart_symbol": "CRWV",
+   "bench_symbol": "SPY",
+   "bench_name": "S&P 500",
+   "market": "US",
+   "sector": "AI cloud",
+   "price": 69.69,
+   "change_1d": 5.94,
+   "range_52w": {
+    "low": 59.51,
+    "high": 150.4
+   },
+   "verdict": "Avoid for now",
+   "verdict_line": "Bond markets are pricing real default risk; the share bounce does not change that.",
+   "summary": "CoreWeave rents out Nvidia GPU capacity to AI developers and has borrowed heavily to build data centres. This week its bonds and credit default swaps moved to levels usually called distressed, setting off a wider AI sell-off that hit Japan and Korea hardest. Most analysts still rate it a buy, but the credit market is telling a different story.",
+   "why_moving": "The shares fell about 15% on Tuesday as bond yields jumped, then bounced 5.9% on Thursday on four times normal volume, helped by ARK buying. Founders have sold $3.3bn of shares since the IPO.",
+   "opportunity": 20,
+   "risk": 93,
+   "ret_bear": -50,
+   "ret_base": -15,
+   "ret_bull": 30,
+   "horizon": "Near term",
+   "bull_case": [
+    "21 of 31 analysts still rate it a buy; average target $146",
+    "Large contracted backlog with major AI customers",
+    "Nvidia’s CEO has publicly backed the business"
+   ],
+   "bear_case": [
+    "Credit default swaps above 1,000 basis points: distressed territory",
+    "2031 bond yielding close to 16%",
+    "Heavy new borrowing needed just as interest rates rise",
+    "Founders have sold $3.3bn of stock since listing"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "$38.4bn"
+    },
+    {
+     "label": "Beta",
+     "value": "7.32",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "29.4m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "$87.92"
+    },
+    {
+     "label": "200-day average",
+     "value": "$92.53"
+    },
+    {
+     "label": "Average analyst target",
+     "value": "$146.10"
+    },
+    {
+     "label": "Volume on Thursday",
+     "value": "128.9m shares",
+     "note": "Over four times the average"
+    },
+    {
+     "label": "Since IPO peak",
+     "value": "Down about 54%"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": 5.94,
+     "bench": 0.33
+    },
+    {
+     "label": "5 days",
+     "stock": -15.78,
+     "bench": -0.86
+    },
+    {
+     "label": "1 month",
+     "stock": -16.39,
+     "bench": 2.55
+    },
+    {
+     "label": "3 months",
+     "stock": -4.42,
+     "bench": 3.84
+    },
+    {
+     "label": "6 months",
+     "stock": -41.71,
+     "bench": 9.98
+    },
+    {
+     "label": "This year",
+     "stock": -2.68,
+     "bench": 13.13
+    },
+    {
+     "label": "1 year",
+     "stock": -50.83,
+     "bench": 16.82
+    }
+   ],
+   "analysts": {
+    "buy": 21,
+    "hold": 9,
+    "sell": 1,
+    "target_low": 74,
+    "target_mean": 146.1,
+    "target_high": 250
+   },
+   "sentiment": {
+    "tone": "Bearish",
+    "bullish": 2,
+    "bearish": 33,
+    "stories_90d": 9562,
+    "attention_change": 108.45,
+    "note": "33 negative stories against 2 positive this week, with coverage more than double last month."
+   },
+   "news": [
+    {
+     "date": "2026-10-16",
+     "title": "Global AI stocks lose $1.6tn as CoreWeave debt yields top 16%",
+     "source": "MSN",
+     "url": "https://www.msn.com/en-sg/money/general/global-ai-stocks-plunge-as-1-6-trillion-is-wiped-out-and-coreweave-debt-yields-top-16-fueling-bubble-fears/ar-AA2ejGfN",
+     "tone": "Negative",
+     "why": "The contagion story"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "CoreWeave credit default swaps reach distress levels",
+     "source": "Loadstar",
+     "url": "https://theloadstar.com/coreweave-cds-distress-investors-sour-on-ai-debt/",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "Co-founders have sold $3.3bn of shares since the IPO",
+     "source": "Yahoo Finance",
+     "url": "https://uk.finance.yahoo.com/news/coreweave-three-co-founders-sold-211810376.html",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "ARK Invest buys 192,000 CoreWeave shares",
+     "source": "Business Insider",
+     "url": "https://markets.businessinsider.com/news/stocks/cathie-wood-s-ark-investment-buys-192k-shares-of-coreweave-today-1036633508",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Dan Ives calls the selloff way overdone",
+     "source": "Benzinga",
+     "url": "https://www.benzinga.com/node/62374008?utm_campaign=partner_feed&utm_medium=feed&utm_source=ravenpack",
+     "tone": "Positive"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-28",
+     "event": "Fed rate decision"
+    },
+    {
+     "date": "2026-11-09",
+     "event": "Q3 results"
+    }
+   ],
+   "watch": [
+    "Credit spreads falling back below 1,000 basis points",
+    "A refinancing deal that pushes out debt maturities",
+    "Hyperscaler capital spending plans in late-October results"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Loadstar: CoreWeave CDS distress",
+     "url": "https://theloadstar.com/coreweave-cds-distress-investors-sour-on-ai-debt/"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  },
+  {
+   "ticker": "BRBY",
+   "name": "Burberry",
+   "exchange": "LSE",
+   "currency": "GBp",
+   "chart_symbol": "BRBY.L",
+   "bench_symbol": "ISF.L",
+   "bench_name": "FTSE 100",
+   "market": "UK",
+   "sector": "Luxury goods",
+   "price": 1111.5,
+   "change_1d": 0.86,
+   "range_52w": {
+    "low": 953.4,
+    "high": 1376.5
+   },
+   "verdict": "Worth a closer look",
+   "verdict_line": "A strategic buyer is building a position in a turnaround, but nothing is agreed and luxury demand is still weak.",
+   "summary": "Burberry is the British luxury brand best known for trench coats and check scarves, part way through a turnaround under chief executive Joshua Schulman. Mike Ashley’s Frasers Group has lifted its exposure to 7.4% in two steps this month, mainly through put options. The shares are up 10% in a month but still 12% down this year.",
+   "why_moving": "The shares rose 8.9% in five days after Frasers disclosed the larger stake, with turnaround commentary turning more positive. Brokers have been cutting targets since August on weak luxury demand.",
+   "opportunity": 54,
+   "risk": 66,
+   "ret_bear": -15,
+   "ret_base": 6,
+   "ret_bull": 22,
+   "horizon": "3 to 6 months",
+   "bull_case": [
+    "Frasers has increased its position twice in a fortnight",
+    "Turnaround refocus on core outerwear and scarves",
+    "New digital chief to sharpen online sales",
+    "Shares still 19% below their 52-week high"
+   ],
+   "bear_case": [
+    "Frasers’ exposure is mostly through put options, not shares",
+    "No bid or approach announced",
+    "RBC and HSBC downgraded in September on the luxury slowdown",
+    "European luxury shares are losing value broadly"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "£4.0bn"
+    },
+    {
+     "label": "Beta",
+     "value": "0.70",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "2.0m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "1,057.64p"
+    },
+    {
+     "label": "200-day average",
+     "value": "1,117.10p"
+    },
+    {
+     "label": "Frasers Group exposure",
+     "value": "7.42%",
+     "note": "Up from 6.32% last week"
+    },
+    {
+     "label": "This year",
+     "value": "−12.4%"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": 0.86,
+     "bench": -0.05
+    },
+    {
+     "label": "5 days",
+     "stock": 8.92,
+     "bench": 2.68
+    },
+    {
+     "label": "1 month",
+     "stock": 10.16,
+     "bench": 1.37
+    },
+    {
+     "label": "3 months",
+     "stock": -0.8,
+     "bench": 2.21
+    },
+    {
+     "label": "6 months",
+     "stock": -2.16,
+     "bench": 2.31
+    },
+    {
+     "label": "This year",
+     "stock": -12.41,
+     "bench": 9.09
+    },
+    {
+     "label": "1 year",
+     "stock": -7.07,
+     "bench": 14.82
+    }
+   ],
+   "analysts": {
+    "buy": 1,
+    "hold": 0,
+    "sell": 1
+   },
+   "sentiment": {
+    "tone": "Mixed",
+    "bullish": 15,
+    "bearish": 8,
+    "stories_90d": 583,
+    "attention_change": -24.25,
+    "note": "More positive than negative stories this week, mainly about Frasers, against a weak luxury backdrop."
+   },
+   "news": [
+    {
+     "date": "2026-10-15",
+     "title": "Burberry turnaround draws investor interest as Frasers adds to its stake",
+     "source": "DirectorsTalk Interviews",
+     "url": "https://www.directorstalkinterviews.com/burberry-turnaround-attracts-investor-interest-as-frasers-increases-stake/4121266392",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-13",
+     "title": "Frasers increases its Burberry stake to 7.42%",
+     "source": "Fashion United",
+     "url": "https://fashionunited.uk/news/business/frasers-increases-stake-in-burberry-to-7-42-percent/2026101390824",
+     "tone": "Positive",
+     "why": "Second increase in a week"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "Burberry sharpens its tech strategy with a new digital chief",
+     "source": "DecisionMarketing",
+     "url": "https://www.decisionmarketing.co.uk/top-story/burberry-tailors-tech-strategy-with-new-digital-chief",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "European luxury giants lose market value as spending cools",
+     "source": "Commercial Times",
+     "url": "https://www.ctee.com.tw/news/20261015700153-430704",
+     "tone": "Negative"
+    },
+    {
+     "date": "2026-09-22",
+     "title": "RBC downgrades Burberry on the luxury slowdown",
+     "source": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/rbc-degrade-burberry-face-au-ralentissement-du-luxe-c29f136e33455494a6a6ff90054cd4a0",
+     "tone": "Negative"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-28",
+     "event": "UK Autumn Budget"
+    }
+   ],
+   "watch": [
+    "Any move by Frasers from options to shares, or past 10%",
+    "Chinese luxury spending data",
+    "Half-year trading update"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Fashion United: Frasers increases stake in Burberry",
+     "url": "https://fashionunited.uk/news/business/frasers-increases-stake-in-burberry-to-7-42-percent/2026101390824"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  },
+  {
+   "ticker": "ROP",
+   "name": "Roper Technologies",
+   "exchange": "NASDAQ",
+   "currency": "$",
+   "chart_symbol": "ROP",
+   "bench_symbol": "SPY",
+   "bench_name": "S&P 500",
+   "market": "US",
+   "sector": "Software",
+   "price": 382.45,
+   "change_1d": 2.62,
+   "range_52w": {
+    "low": 305.96,
+    "high": 519.1
+   },
+   "verdict": "Worth a closer look",
+   "verdict_line": "A steady compounder trading 26% below its high, with results on 22 Oct as the test.",
+   "summary": "Roper owns a portfolio of niche software and engineered products businesses, from insurance software to industrial sensors, and grows largely by buying companies. It has beaten earnings forecasts in recent quarters and raised its guidance in July. The shares have lagged this year as software valuations came under pressure.",
+   "why_moving": "A 2.6% rise on Thursday and 4.7% over five days came as investors moved into lower-risk names during the AI sell-off, ahead of Q3 results on 22 Oct.",
+   "opportunity": 63,
+   "risk": 40,
+   "ret_bear": -8,
+   "ret_base": 9,
+   "ret_bull": 20,
+   "horizon": "6 months+",
+   "bull_case": [
+    "Recurring software revenue and strong cash conversion",
+    "Raised full-year guidance in July after a Q2 beat",
+    "Low beta of 0.75 suits a defensive market",
+    "14 of 23 analysts rate it a buy"
+   ],
+   "bear_case": [
+    "Down 14% this year and 24% over 12 months",
+    "Software valuations under pressure from AI disruption fears",
+    "Acquisition-led growth is sensitive to higher borrowing costs"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "$37.8bn"
+    },
+    {
+     "label": "Beta",
+     "value": "0.75",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "0.9m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "$386.88"
+    },
+    {
+     "label": "200-day average",
+     "value": "$365.46"
+    },
+    {
+     "label": "Average analyst target",
+     "value": "$427.71"
+    },
+    {
+     "label": "Analyst target range",
+     "value": "$355 to $526"
+    },
+    {
+     "label": "This year",
+     "value": "−14.1%"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": 2.62,
+     "bench": 0.33
+    },
+    {
+     "label": "5 days",
+     "stock": 4.72,
+     "bench": -0.86
+    },
+    {
+     "label": "1 month",
+     "stock": 1.76,
+     "bench": 2.55
+    },
+    {
+     "label": "3 months",
+     "stock": 5.01,
+     "bench": 3.84
+    },
+    {
+     "label": "6 months",
+     "stock": 5.68,
+     "bench": 9.98
+    },
+    {
+     "label": "This year",
+     "stock": -14.08,
+     "bench": 13.13
+    },
+    {
+     "label": "1 year",
+     "stock": -23.52,
+     "bench": 16.82
+    }
+   ],
+   "analysts": {
+    "buy": 14,
+    "hold": 6,
+    "sell": 3,
+    "target_low": 355,
+    "target_mean": 427.71,
+    "target_high": 526
+   },
+   "sentiment": {
+    "tone": "Bullish",
+    "bullish": 10,
+    "bearish": 1,
+    "stories_90d": 297,
+    "attention_change": -12.55,
+    "note": "Mostly product and pre-results coverage this week, overwhelmingly positive but quiet."
+   },
+   "news": [
+    {
+     "date": "2026-10-15",
+     "title": "Roper earnings expected to grow ahead of next week’s release",
+     "source": "Nasdaq",
+     "url": "https://www.nasdaq.com/articles/roper-technologies-rop-earnings-expected-grow-what-know-ahead-next-weeks-release",
+     "tone": "Neutral"
+    },
+    {
+     "date": "2026-10-13",
+     "title": "PowerPlan launches an Oracle cloud integration",
+     "source": "Benzinga",
+     "url": "https://www.benzinga.com/node/62318666?utm_campaign=partner_feed&utm_medium=feed&utm_source=ravenpack",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "iPipeline named a finalist for AI innovation awards",
+     "source": "Benzinga",
+     "url": "https://www.benzinga.com/node/62352209?utm_campaign=partner_feed&utm_medium=feed&utm_source=ravenpack",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-07-23",
+     "title": "Roper raises 2026 guidance after a stronger Q2",
+     "source": "Alliance News",
+     "tone": "Positive"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-22",
+     "event": "Q3 results"
+    }
+   ],
+   "watch": [
+    "Organic growth in the Q3 results",
+    "Any change to full-year guidance",
+    "New acquisitions and their price"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Nasdaq: Roper earnings preview",
+     "url": "https://www.nasdaq.com/articles/roper-technologies-rop-earnings-expected-grow-what-know-ahead-next-weeks-release"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  },
+  {
+   "ticker": "VLO",
+   "name": "Valero Energy",
+   "exchange": "NYSE",
+   "currency": "$",
+   "chart_symbol": "VLO",
+   "bench_symbol": "SPY",
+   "bench_name": "S&P 500",
+   "market": "US",
+   "sector": "Oil refining",
+   "price": 444.06,
+   "change_1d": -3.42,
+   "range_52w": {
+    "low": 155.29,
+    "high": 461.52
+   },
+   "verdict": "Wait for a better entry",
+   "verdict_line": "Refining margins are exceptional, but the shares trade above the average analyst target after a huge run.",
+   "summary": "Valero is the largest independent US oil refiner. Damage to refining capacity in the Gulf has pushed diesel margins to extremes, and its profits and buybacks have soared. The shares have nearly tripled this year and sit just below a record ahead of Q3 results on 22 Oct.",
+   "why_moving": "The shares fell 3.4% on Thursday as US crude dropped 2.3%, despite Citi and Wells Fargo raising targets to $485 earlier in the week. Some commentators now argue the stock is fully priced.",
+   "opportunity": 70,
+   "risk": 62,
+   "ret_bear": -15,
+   "ret_base": 8,
+   "ret_bull": 22,
+   "horizon": "3 to 6 months",
+   "bull_case": [
+    "Diesel shortage expected to last into 2027",
+    "Citi and Wells Fargo targets raised to $485",
+    "Q2 earnings of $12.54 a share beat forecasts by a wide margin",
+    "Heavy crude discount favours its refineries"
+   ],
+   "bear_case": [
+    "Price is above the $418 average analyst target",
+    "A US-Iran deal could remove the oil risk premium quickly",
+    "Heating oil down 12% in a month",
+    "Risk of windfall taxes or political pressure"
+   ],
+   "key_numbers": [
+    {
+     "label": "Market value",
+     "value": "$127.9bn"
+    },
+    {
+     "label": "Beta",
+     "value": "0.59",
+     "note": "Above 1 moves more than the market"
+    },
+    {
+     "label": "Average daily volume",
+     "value": "3.0m shares"
+    },
+    {
+     "label": "50-day average",
+     "value": "$378.80"
+    },
+    {
+     "label": "200-day average",
+     "value": "$272.61"
+    },
+    {
+     "label": "Average analyst target",
+     "value": "$417.70"
+    },
+    {
+     "label": "This year",
+     "value": "+173%"
+    },
+    {
+     "label": "Analyst target range",
+     "value": "$203 to $485"
+    }
+   ],
+   "performance": [
+    {
+     "label": "1 day",
+     "stock": -3.42,
+     "bench": 0.33
+    },
+    {
+     "label": "5 days",
+     "stock": 0.81,
+     "bench": -0.86
+    },
+    {
+     "label": "1 month",
+     "stock": 10.11,
+     "bench": 2.55
+    },
+    {
+     "label": "3 months",
+     "stock": 47.89,
+     "bench": 3.84
+    },
+    {
+     "label": "6 months",
+     "stock": 83.69,
+     "bench": 9.98
+    },
+    {
+     "label": "This year",
+     "stock": 172.78,
+     "bench": 13.13
+    },
+    {
+     "label": "1 year",
+     "stock": 183.94,
+     "bench": 16.82
+    }
+   ],
+   "analysts": {
+    "buy": 21,
+    "hold": 15,
+    "sell": 1,
+    "target_low": 203,
+    "target_mean": 417.7,
+    "target_high": 485
+   },
+   "sentiment": {
+    "tone": "Bullish",
+    "bullish": 19,
+    "bearish": 1,
+    "stories_90d": 1174,
+    "attention_change": -5.53,
+    "note": "19 positive stories against 1 negative this week, driven by target upgrades."
+   },
+   "news": [
+    {
+     "date": "2026-10-15",
+     "title": "Can Valero’s heavy crude advantage support stronger margins?",
+     "source": "Nasdaq",
+     "url": "https://www.nasdaq.com/articles/can-valeros-heavy-crude-advantage-support-stronger-refining-margins",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-15",
+     "title": "Valero looks fully priced after a sevenfold run",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/valero-energy-vlo-stock-looks-171254866.html",
+     "tone": "Negative",
+     "why": "The valuation debate"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "Wells Fargo raises its Valero target to $485",
+     "source": "Benzinga",
+     "url": "https://www.benzinga.com/node/62357486?utm_campaign=partner_feed&utm_medium=feed&utm_source=ravenpack",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "Why Valero stock jumped",
+     "source": "Yahoo Finance",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/why-valero-energy-stock-triumphed-003248062.html",
+     "tone": "Positive"
+    },
+    {
+     "date": "2026-09-22",
+     "title": "Jefferies cuts Valero to hold",
+     "source": "Alliance News",
+     "tone": "Negative"
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-10-22",
+     "event": "Q3 results"
+    },
+    {
+     "date": "2026-10-28",
+     "event": "Fed rate decision"
+    }
+   ],
+   "watch": [
+    "Diesel crack spreads into the results",
+    "Any US-Iran agreement that reopens Gulf supply",
+    "Size of the next buyback"
+   ],
+   "sources": [
+    {
+     "title": "Bigdata.com",
+     "url": "https://bigdata.com"
+    },
+    {
+     "title": "Nasdaq: Valero heavy crude advantage",
+     "url": "https://www.nasdaq.com/articles/can-valeros-heavy-crude-advantage-support-stronger-refining-margins"
+    }
+   ],
+   "generated_by": "Bigdata.com company and sentiment tearsheets, 16 Oct 2026"
+  }
+ ]
+}

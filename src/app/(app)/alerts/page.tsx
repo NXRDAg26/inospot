@@ -1,41 +1,44 @@
+import Link from 'next/link';
+import { AlertCard } from '@/components/AlertCard';
 import { MobileTop } from '@/components/Nav';
-import { getHistory } from '@/lib/data';
-import { hasDb } from '@/lib/db';
-import { shortDate } from '@/lib/format';
-import AlertsClient from './AlertsClient';
+import { listAlerts } from '@/lib/alerts';
+import { getScan } from '@/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Alerts() {
-  const history = hasDb() ? await getHistory(14).catch(() => []) : [];
-  const key = process.env.VAPID_PUBLIC_KEY ?? '';
+  const [alerts, scan] = await Promise.all([listAlerts(7).catch(() => []), getScan()]);
+  const radar = new Set(scan.opps.map((o) => o.ticker.toUpperCase()));
+  const today = new Date().toDateString();
+  const fresh = alerts.filter((a) => !a.created_at || new Date(a.created_at).toDateString() === today);
+  const older = alerts.filter((a) => a.created_at && new Date(a.created_at).toDateString() !== today);
+  const ordered = (l: typeof alerts) => [...l].sort((a, b) => (a.strength === b.strength ? 0 : a.strength === 'Strong' ? -1 : 1));
   return (
-    <div className="page">
+    <div className="page wide">
       <MobileTop />
-      <header className="ph">
-        <h1>Alerts</h1>
-        <p>Get the pick of the day on this device as soon as the morning scan lands, around 7:50am on weekdays.</p>
+      <header className="ph" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 16, flexWrap: 'wrap' }}>
+        <div>
+          <h1>Alerts</h1>
+          <p>Stocks moving in a way worth looking into, checked on weekday mornings, midday and after the US open. Strong ones also go to your phone.</p>
+        </div>
+        <Link href="/alerts/settings" className="btn secondary">Phone alerts</Link>
       </header>
-      <AlertsClient vapidKey={key} />
 
-      <section className="block">
-        <div className="block-head"><h2>Recent scans</h2></div>
-        {history.length ? (
-          <div className="rows">
-            {history.map((h) => (
-              <div className="row" key={h.id} style={{ gridTemplateColumns: '1fr auto' }}>
-                <div><div className="row-name">{h.pick || 'No pick'}</div><div className="row-sub">Pick of the day</div></div>
-                <div className="row-end"><div className="k" style={{ fontSize: 13 }}>{shortDate(String(h.created_at))}</div></div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="muted">Scans appear here once the first morning scan has been published.</p>
-        )}
-      </section>
+      {alerts.length === 0 && <p className="muted">No alerts in the last seven days. The next check runs on the next weekday.</p>}
 
-      <section className="block">
-        <div className="block-head"><h2>Install on your phone</h2></div>
-        <p className="prose muted">On iPhone, open Inospot in Safari, tap Share, then Add to Home Screen. On Android, open it in Chrome and choose Install app. Alerts on iPhone work once it is added to the Home Screen.</p>
-      </section>
+      {fresh.length > 0 && (
+        <section>
+          <div className="block-head"><h2>Today</h2><span className="muted" style={{ fontSize: 14 }}>{fresh.length} alert{fresh.length === 1 ? '' : 's'}</span></div>
+          <div className="agrid">{ordered(fresh).map((a) => <AlertCard key={`${a.id}-${a.ticker}`} a={a} onRadar={radar.has(a.ticker)} />)}</div>
+        </section>
+      )}
+      {older.length > 0 && (
+        <section className="block">
+          <div className="block-head"><h2>Earlier this week</h2></div>
+          <div className="agrid">{older.map((a) => <AlertCard key={`${a.id}-${a.ticker}`} a={a} compact onRadar={radar.has(a.ticker)} />)}</div>
+        </section>
+      )}
+      <p className="foot">Alerts flag unusual moves to research, not trades to make. Research aid, not financial advice.</p>
     </div>
   );
 }

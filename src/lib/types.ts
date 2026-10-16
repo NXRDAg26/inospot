@@ -150,3 +150,73 @@ export interface Insight {
 }
 
 export type RankedIdea = Idea & { score: number; rank: number };
+
+export interface Alert {
+  id?: number;
+  ticker: string;
+  name: string;
+  market: string; // UK, US, Global
+  kind: string; // Breakout, Sell-off, Unusual volume, Pre-results, Risk
+  strength: 'Strong' | 'Watch';
+  stance: 'Opportunity' | 'Caution';
+  price?: number | null;
+  ccy?: string;
+  change_1d?: number | null;
+  change_5d?: number | null;
+  headline: string;
+  why: string;
+  check?: string;
+  chart_symbol?: string;
+  created_at?: string;
+}
+
+export interface DiveNews { date: string; title: string; source: string; url?: string; tone: 'Positive' | 'Negative' | 'Neutral'; why?: string }
+export interface DivePerf { label: string; stock: number | null; bench: number | null }
+
+export interface Dive {
+  ticker: string;
+  name: string;
+  exchange?: string;
+  currency?: string; // $, GBp, TWD, €
+  chart_symbol?: string; // Yahoo style: TSM, PSN.L
+  bench_symbol?: string;
+  bench_name?: string;
+  market?: string;
+  sector?: string;
+  price?: number | null;
+  change_1d?: number | null;
+  range_52w?: { low: number; high: number } | null;
+  verdict: string; // Worth a closer look | Wait for a better entry | Avoid for now
+  verdict_line: string;
+  summary: string;
+  why_moving?: string;
+  opportunity?: number;
+  risk?: number;
+  ret_bear?: number;
+  ret_base?: number;
+  ret_bull?: number;
+  horizon?: string;
+  bull_case: string[];
+  bear_case: string[];
+  key_numbers?: { label: string; value: string; note?: string }[];
+  performance?: DivePerf[];
+  analysts?: { buy: number; hold: number; sell: number; target_low?: number | null; target_mean?: number | null; target_high?: number | null } | null;
+  sentiment?: { tone: string; bullish: number; bearish: number; stories_90d?: number | null; attention_change?: number | null; note?: string } | null;
+  news?: DiveNews[];
+  catalysts?: { date: string; event: string }[];
+  watch?: string[];
+  sources?: { title: string; url: string }[];
+  generated_by?: string;
+}
+
+export interface DiveRecord {
+  id: number;
+  ticker: string;
+  status: 'queued' | 'running' | 'ready' | 'failed';
+  source: 'scan' | 'live';
+  created_at: string;
+  updated_at: string;
+  data: Dive | null;
+  error?: string | null;
+  stage?: string | null;
+}

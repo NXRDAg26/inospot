@@ -10,7 +10,15 @@ export async function getScan(): Promise<Scan> {
     try {
       const pool = await db();
       const r = await pool.query('select data, created_at from scans order by id desc limit 1');
-      if (r.rows[0]) return r.rows[0].data as Scan;
+      if (r.rows[0]) {
+        const scan = r.rows[0].data as Scan;
+        // Same-day scans published before the board existed borrow the shipped board for that day.
+        const sd = seed as unknown as Scan;
+        if (!scan.markets && sd.markets && String(scan.scanned_at).slice(0, 10) === String(sd.scanned_at).slice(0, 10)) {
+          return { ...scan, markets: sd.markets, insights: sd.insights };
+        }
+        return scan;
+      }
     } catch (e) {
       console.error('Falling back to seed scan:', e);
     }

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { IdeaRow, Range } from '@/components/Bits';
 import { InsightHero, MarketBoard } from '@/components/Board';
+import { AlertCard } from '@/components/AlertCard';
+import { listAlerts } from '@/lib/alerts';
 import { MobileTop } from '@/components/Nav';
 import { getScan, pickOfDay, ranked } from '@/lib/data';
 import { pct, shortDate, whenLabel, daysUntil } from '@/lib/format';
@@ -16,7 +18,8 @@ const moodColour = (r: string) => {
 };
 
 export default async function Today() {
-  const scan = await getScan();
+  const [scan, alerts] = await Promise.all([getScan(), listAlerts(2).catch(() => [])]);
+  const topAlerts = [...alerts].sort((a, b) => (a.strength === b.strength ? 0 : a.strength === 'Strong' ? -1 : 1)).slice(0, 3);
   const list = ranked(scan.opps);
   const pick = pickOfDay(list);
   const others = list.filter((o) => o.ticker !== pick?.ticker && o.rating !== 'Avoid').slice(0, 4);
@@ -53,6 +56,13 @@ export default async function Today() {
           <div style={{ marginTop: 22 }}><Range bear={pick.ret_bear} base={pick.ret_base} bull={pick.ret_bull} light /></div>
           <span className="pick-cta">Read the full case</span>
         </Link>
+      )}
+
+      {topAlerts.length > 0 && (
+        <section className="block" style={{ marginTop: 36 }}>
+          <div className="block-head"><h2>Alerts</h2><Link className="more" href="/alerts">All alerts</Link></div>
+          <div className="agrid scroll">{topAlerts.map((a) => <AlertCard key={`${a.id}-${a.ticker}`} a={a} compact />)}</div>
+        </section>
       )}
 
       <div className="mood" style={{ marginTop: 28 }}>

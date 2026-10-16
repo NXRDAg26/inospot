@@ -26,6 +26,7 @@ export default async function Idea({ params }: { params: { ticker: string } }) {
         <span className="tag">{o.sector}</span>
         <span className="tag">{o.signal}</span>
       </div>
+      <Link href={`/research/dive/${encodeURIComponent(o.ticker)}`} className="btn dive-btn" style={{ marginTop: 18, display: 'inline-flex' }}>Deep dive into {o.ticker}</Link>
 
       <div className="figs">
         <div className="fig"><div className="k">Score</div><div className="v num">{o.score}</div></div>

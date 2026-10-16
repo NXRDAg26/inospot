@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { Mono } from '@/components/Bits';
+import { DiveSearch } from '@/components/DiveClient';
+import { recentDives } from '@/lib/alerts';
 import { MobileTop } from '@/components/Nav';
 import { getScan } from '@/lib/data';
 import { pct, tone } from '@/lib/format';
@@ -19,7 +21,7 @@ const arrow = (d: string) => (d === 'Heating' ? '↑' : d === 'Cooling' ? '↓' 
 const dirTone = (d: string) => (d === 'Heating' || d === 'Rising' ? 'gain' : d === 'Cooling' || d === 'Falling' ? 'loss' : 'flat');
 
 export default async function Research({ searchParams }: { searchParams: { f?: string } }) {
-  const scan = await getScan();
+  const [scan, dives] = await Promise.all([getScan(), recentDives(8).catch(() => [])]);
   const themes = [...scan.themes].sort((a, b) => b.heat - a.heat);
   const f = searchParams.f && FILTERS[searchParams.f] ? searchParams.f : 'All';
   const watch = [...scan.watch].sort((a, b) => b.heat - a.heat).filter(FILTERS[f]);
@@ -31,7 +33,23 @@ export default async function Research({ searchParams }: { searchParams: { f?: s
         <p>What the wider market is doing across shares, funds, bonds and commodities, and what might earn a place on the radar next.</p>
       </header>
 
-      <section>
+      <section className="dive-hero">
+        <h2>Deep dive any stock</h2>
+        <p className="muted">Pulls results, news, analyst views and valuation from across the web, with performance charts. Add .L for London listings.</p>
+        <DiveSearch />
+        {dives.length > 0 && (
+          <div className="dive-recent">
+            <span className="muted">Recent:</span>
+            {dives.map((r) => (
+              <Link key={r.id + r.ticker} href={`/research/dive/${encodeURIComponent(r.ticker)}`} className="dchip">
+                <b>{r.ticker}</b>{r.data?.verdict ? <span>{r.data.verdict}</span> : null}
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="block">
         <div className="block-head"><h2>Hot themes</h2><span className="muted" style={{ fontSize: 14 }}>Heat out of 100</span></div>
         <div className="themes">
           {themes.map((t, i) => (

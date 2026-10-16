@@ -25,6 +25,25 @@ export async function db(): Promise<Pool> {
            created_at timestamptz not null default now(),
            data jsonb not null
          );
+         create table if not exists alerts (
+           id serial primary key,
+           created_at timestamptz not null default now(),
+           ticker text not null,
+           data jsonb not null
+         );
+         create index if not exists alerts_created on alerts (created_at desc);
+         create table if not exists dives (
+           id serial primary key,
+           ticker text not null,
+           status text not null default 'queued',
+           source text not null default 'live',
+           stage text,
+           created_at timestamptz not null default now(),
+           updated_at timestamptz not null default now(),
+           data jsonb,
+           error text
+         );
+         create index if not exists dives_ticker on dives (ticker, updated_at desc);
          create table if not exists push_subs (
            endpoint text primary key,
            sub jsonb not null,

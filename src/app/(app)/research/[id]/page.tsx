@@ -26,6 +26,7 @@ export default async function WatchDetail({ params }: { params: { id: string } }
         <span className="tag">{w.region}</span>
         <span className="tag">{w.direction}</span>
       </div>
+      <Link href={`/research/dive/${encodeURIComponent(w.ticker)}`} className="btn dive-btn" style={{ marginTop: 18, display: 'inline-flex' }}>Deep dive into {w.ticker}</Link>
       <div className="figs">
         <div className="fig"><div className="k">Heat</div><div className="v num">{w.heat}</div></div>
         <div className="fig"><div className="k">5 days</div><div className={`v num ${tone(w.move_1w)}`}>{pct(w.move_1w, 1)}</div></div>

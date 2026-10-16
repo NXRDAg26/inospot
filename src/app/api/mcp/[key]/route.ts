@@ -1,9 +1,10 @@
 // Minimal MCP server (Streamable HTTP, JSON responses) so Claude can publish the morning scan.
 // Add to Claude as a custom connector: https://<host>/api/mcp/<MCP_KEY>
+import { listAlerts, saveAlerts, saveReadyDive, validateAlert, validateDive } from '@/lib/alerts';
 import { getScan, pickOfDay, ranked, saveScan, validateScan } from '@/lib/data';
 import { hasDb } from '@/lib/db';
 import { notifyAll } from '@/lib/push';
-import type { Scan } from '@/lib/types';
+import type { Alert, Dive, Scan } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,6 +62,32 @@ const TOOLS = [
     },
   },
   {
+    name: 'publish_alerts',
+    description:
+      'Post stocks that are moving in a way worth researching to the Inospot Alerts feed, optionally with a prepared deep dive for each. Strong alerts send a phone push (once per ticker per 20 hours, at most 3 per call). ' +
+      'Alert: { ticker, name, market (UK|US|Global), kind (Breakout|Sell-off|Unusual volume|Pre-results|Risk|News), strength (Strong|Watch), stance (Opportunity|Caution), price, ccy ($|GBp|TWD|€), change_1d, change_5d, headline (one line with the measured move), why (2 sentences: the cause), check (what to look into), chart_symbol (Yahoo style, e.g. PSN.L) }. ' +
+      'Dive: { ticker, name, exchange, currency, chart_symbol, market, sector, price, change_1d, range_52w {low, high}, verdict (Worth a closer look|Wait for a better entry|Avoid for now), verdict_line, summary, why_moving, opportunity, risk, ret_bear, ret_base, ret_bull, horizon, bull_case [], bear_case [], key_numbers [{label, value, note}], performance [{label, stock, bench}], analysts {buy, hold, sell, target_low, target_mean, target_high}, sentiment {tone, bullish, bearish, stories_90d, attention_change, note}, news [{date, title, source, url, tone (Positive|Negative|Neutral), why}], catalysts [{date, event}], watch [], sources [{title, url}], generated_by }.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        alerts: { type: 'array', items: { type: 'object' } },
+        dives: { type: 'array', items: { type: 'object' }, description: 'Optional prepared deep dives, one per alerted ticker.' },
+        notify: { type: 'boolean', description: 'Push Strong alerts to phones. Defaults to true.' },
+      },
+      required: ['alerts'],
+    },
+  },
+  {
+    name: 'save_dive',
+    description: 'Save a prepared deep dive for one stock (same shape as the dives in publish_alerts). It appears on the stock’s deep dive page in Research.',
+    inputSchema: { type: 'object', properties: { dive: { type: 'object' } }, required: ['dive'] },
+  },
+  {
+    name: 'get_alerts',
+    description: 'Return Inospot alerts from the last N days (default 3), newest first, so a new check can avoid repeating them.',
+    inputSchema: { type: 'object', properties: { days: { type: 'number' } } },
+  },
+  {
     name: 'get_latest_scan',
     description: 'Return the scan Inospot is currently showing, including every field, so it can be updated and published again.',
     inputSchema: { type: 'object', properties: {} },
@@ -76,6 +103,27 @@ const text = (t: string, isError = false) => ({ content: [{ type: 'text', text: 
 async function callTool(name: string, args: Record<string, unknown>) {
   if (name === 'get_latest_scan') {
     return text(JSON.stringify(await getScan()));
+  }
+  if (name === 'publish_alerts') {
+    if (!hasDb()) return text('Inospot has no database connected.', true);
+    const alerts = (Array.isArray(args.alerts) ? args.alerts : []) as Alert[];
+    for (const a of alerts) { const p = validateAlert(a); if (p) return text(`Alerts not saved: ${p}.`, true); }
+    const dives = (Array.isArray(args.dives) ? args.dives : []) as Dive[];
+    for (const d of dives) { const p = validateDive(d); if (p) return text(`Nothing saved: ${p}.`, true); }
+    for (const d of dives) await saveReadyDive(d, 'scan');
+    const r = await saveAlerts(alerts, args.notify !== false);
+    return text(`Saved ${r.saved} alert${r.saved === 1 ? '' : 's'} and ${dives.length} deep dive${dives.length === 1 ? '' : 's'}. Push alerts sent for ${r.pushed} strong mover${r.pushed === 1 ? '' : 's'}.`);
+  }
+  if (name === 'save_dive') {
+    if (!hasDb()) return text('Inospot has no database connected.', true);
+    const p = validateDive(args.dive);
+    if (p) return text(`Not saved: ${p}.`, true);
+    const id = await saveReadyDive(args.dive as Dive, 'scan');
+    return text(`Deep dive ${id} saved for ${(args.dive as Dive).ticker}.`);
+  }
+  if (name === 'get_alerts') {
+    const days = Math.max(1, Math.min(14, Number(args.days) || 3));
+    return text(JSON.stringify(await listAlerts(days)));
   }
   if (name === 'update_latest_scan') {
     if (!hasDb()) return text('Inospot has no database connected, so nothing was saved.', true);
@@ -111,8 +159,8 @@ async function handle(msg: RpcReq) {
       return ok(msg.id, {
         protocolVersion: (msg.params?.protocolVersion as string) || PROTOCOL,
         capabilities: { tools: { listChanged: false } },
-        serverInfo: { name: 'inospot', version: '1.0.0' },
-        instructions: 'Inospot shows James Norgate’s market opportunity scan. Use get_latest_scan to read it and publish_scan to replace it after the morning research.',
+        serverInfo: { name: 'inospot', version: '1.2.0' },
+        instructions: 'Inospot shows James Norgate’s market opportunity scan. Use get_latest_scan to read it and publish_scan to replace it after the morning research. Use publish_alerts for unusual movers (with prepared deep dives) and get_alerts to avoid repeats.',
       });
     case 'ping':
       return ok(msg.id, {});
