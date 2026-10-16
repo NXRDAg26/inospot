@@ -98,8 +98,19 @@ async function handle(msg: RpcReq) {
   }
 }
 
+// Render generates base64 keys that can contain "/", "+" and "=". Accept the key as given,
+// percent-encoded, or in URL-safe form ("+" to "-", "/" to "_", no "=") so it works in a URL path.
+const urlSafe = (k: string) => k.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+function keyMatches(given: string) {
+  const real = process.env.MCP_KEY;
+  if (!real) return false;
+  let decoded = given;
+  try { decoded = decodeURIComponent(given); } catch { /* keep as given */ }
+  return [given, decoded].some((g) => g === real || g === urlSafe(real));
+}
+
 export async function POST(req: Request, { params }: { params: { key: string } }) {
-  if (!process.env.MCP_KEY || params.key !== process.env.MCP_KEY) {
+  if (!keyMatches(params.key)) {
     return Response.json({ error: 'Not found' }, { status: 404 });
   }
   const body = await req.json().catch(() => null);
