@@ -2,15 +2,16 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export function DiveRunner({ ticker, pendingId, label = 'Run a deep dive', enabled, note }: { ticker: string; pendingId?: number | null; label?: string; enabled: boolean; note?: string }) {
+export function DiveRunner({ ticker, pendingId, pendingMode, label = 'Run a deep dive', enabled, note, live }: { ticker: string; pendingId?: number | null; pendingMode?: 'live' | 'request'; label?: string; enabled: boolean; note?: string; live: boolean }) {
   const router = useRouter();
   const [id, setId] = useState<number | null>(pendingId ?? null);
   const [stage, setStage] = useState('');
   const [err, setErr] = useState('');
-  const [busy, setBusy] = useState(Boolean(pendingId));
+  const [mode, setMode] = useState<'live' | 'request' | null>(pendingId ? pendingMode ?? 'live' : null);
+  const [busy, setBusy] = useState(Boolean(pendingId) && pendingMode !== 'request');
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || mode === 'request') return;
     let stop = false;
     const tick = async () => {
       const r = await fetch(`/api/dive/${id}`).catch(() => null);
@@ -23,14 +24,26 @@ export function DiveRunner({ ticker, pendingId, label = 'Run a deep dive', enabl
     };
     tick();
     return () => { stop = true; };
-  }, [id, router]);
+  }, [id, mode, router]);
 
   async function start() {
     setErr(''); setBusy(true); setStage('Starting');
     const r = await fetch('/api/dive', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ticker }) });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) { setBusy(false); setErr(j.error || 'Could not start the deep dive.'); return; }
-    setId(j.id);
+    if (j.mode === 'request') { setBusy(false); setMode('request'); setId(j.id); return; }
+    setMode('live'); setId(j.id);
+  }
+
+  if (mode === 'request') {
+    return (
+      <div className="runner">
+        <div className="runner-busy" role="status">
+          <span className="clock" aria-hidden="true" />
+          <div><b>Deep dive requested for {ticker}</b><span className="muted">It will be ready after the next research run: weekdays at 7:46am, 10:52am and 2:52pm. Or ask Claude to run your Inospot deep dive requests now.</span></div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -41,7 +54,7 @@ export function DiveRunner({ ticker, pendingId, label = 'Run a deep dive', enabl
           <div><b>Researching {ticker}</b><span className="muted">{stage}. This takes one to two minutes; you can leave the page and come back.</span></div>
         </div>
       ) : (
-        <button className="btn dive-btn" onClick={start} disabled={!enabled}>{label}</button>
+        <button className="btn dive-btn" onClick={start} disabled={!enabled}>{live ? label : label.replace('Run a deep dive', 'Request a deep dive').replace('Refresh deep dive', 'Request a fresh deep dive')}</button>
       )}
       {!enabled && !busy && note && <p className="muted small-note">{note}</p>}
       {err && <p className="err" style={{ marginTop: 10 }}>{err}</p>}

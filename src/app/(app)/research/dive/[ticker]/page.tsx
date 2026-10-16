@@ -27,7 +27,9 @@ export default async function DivePage({ params }: { params: { ticker: string } 
   const [{ ready, pending }, scan, alerts] = await Promise.all([latestDive(ticker), getScan(), listAlerts(7).catch(() => [])]);
   const d = ready?.data ?? null;
   const live = hasLiveDives() && hasDb();
-  const liveNote = hasDb() ? 'Live deep dives switch on once an Anthropic API key is added in Render.' : 'Live deep dives need the app database.';
+  const canRun = hasDb();
+  const liveNote = 'Deep dives need the app database.';
+  const pMode = pending?.source === 'request' ? 'request' : 'live';
   const alert = alerts.find((a) => normTicker(a.ticker) === ticker);
 
   const chartSym = d?.chart_symbol || alert?.chart_symbol || ticker;
@@ -86,13 +88,13 @@ export default async function DivePage({ params }: { params: { ticker: string } 
           <p className="muted small-note">
             {ready?.source === 'live' ? 'Live deep dive' : 'Prepared by the morning research'}, {ago(ready!.updated_at)}{d.generated_by ? `. ${d.generated_by}` : ''}.
           </p>
-          <DiveRunner ticker={ticker} pendingId={pending?.id} label="Refresh deep dive" enabled={live} />
+          <DiveRunner ticker={ticker} pendingId={pending?.id} pendingMode={pMode} label="Refresh deep dive" enabled={canRun} live={live} />
         </section>
       ) : (
         <section className="verdict empty">
           <h2>No deep dive for {ticker} yet</h2>
-          <p className="muted">A deep dive searches results, news, analyst ratings and valuation, then writes up the case for and against with performance charts.</p>
-          <DiveRunner ticker={ticker} pendingId={pending?.id} enabled={live} note={liveNote} />
+          <p className="muted">A deep dive searches results, news, analyst ratings and valuation, then writes up the case for and against. {live ? 'It takes one to two minutes.' : 'Request one and it is written at the next research run.'} The price charts below are live now.</p>
+          <DiveRunner ticker={ticker} pendingId={pending?.id} pendingMode={pMode} enabled={canRun} live={live} note={liveNote} />
         </section>
       )}
 

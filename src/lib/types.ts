@@ -212,8 +212,8 @@ export interface Dive {
 export interface DiveRecord {
   id: number;
   ticker: string;
-  status: 'queued' | 'running' | 'ready' | 'failed';
-  source: 'scan' | 'live';
+  status: 'queued' | 'running' | 'ready' | 'failed' | 'done';
+  source: 'scan' | 'live' | 'request';
   created_at: string;
   updated_at: string;
   data: Dive | null;

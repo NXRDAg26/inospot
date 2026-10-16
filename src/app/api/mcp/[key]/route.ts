@@ -1,6 +1,6 @@
 // Minimal MCP server (Streamable HTTP, JSON responses) so Claude can publish the morning scan.
 // Add to Claude as a custom connector: https://<host>/api/mcp/<MCP_KEY>
-import { listAlerts, saveAlerts, saveReadyDive, validateAlert, validateDive } from '@/lib/alerts';
+import { listAlerts, listRequests, saveAlerts, saveReadyDive, validateAlert, validateDive } from '@/lib/alerts';
 import { getScan, pickOfDay, ranked, saveScan, validateScan } from '@/lib/data';
 import { hasDb } from '@/lib/db';
 import { notifyAll } from '@/lib/push';
@@ -83,6 +83,11 @@ const TOOLS = [
     inputSchema: { type: 'object', properties: { dive: { type: 'object' } }, required: ['dive'] },
   },
   {
+    name: 'get_dive_requests',
+    description: 'List stocks James has asked Inospot to deep dive (queued from the app, oldest first). Research each, then call save_dive; saving a dive clears the request.',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
     name: 'get_alerts',
     description: 'Return Inospot alerts from the last N days (default 3), newest first, so a new check can avoid repeating them.',
     inputSchema: { type: 'object', properties: { days: { type: 'number' } } },
@@ -120,6 +125,10 @@ async function callTool(name: string, args: Record<string, unknown>) {
     if (p) return text(`Not saved: ${p}.`, true);
     const id = await saveReadyDive(args.dive as Dive, 'scan');
     return text(`Deep dive ${id} saved for ${(args.dive as Dive).ticker}.`);
+  }
+  if (name === 'get_dive_requests') {
+    const r = await listRequests();
+    return text(r.length ? JSON.stringify(r) : 'No deep dive requests waiting.');
   }
   if (name === 'get_alerts') {
     const days = Math.max(1, Math.min(14, Number(args.days) || 3));
@@ -160,7 +169,7 @@ async function handle(msg: RpcReq) {
         protocolVersion: (msg.params?.protocolVersion as string) || PROTOCOL,
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: 'inospot', version: '1.2.0' },
-        instructions: 'Inospot shows James Norgate’s market opportunity scan. Use get_latest_scan to read it and publish_scan to replace it after the morning research. Use publish_alerts for unusual movers (with prepared deep dives) and get_alerts to avoid repeats.',
+        instructions: 'Inospot shows James Norgate’s market opportunity scan. Use get_latest_scan to read it and publish_scan to replace it after the morning research. Use publish_alerts for unusual movers (with prepared deep dives), get_alerts to avoid repeats, and get_dive_requests plus save_dive to answer deep dives James requests from the app.',
       });
     case 'ping':
       return ok(msg.id, {});

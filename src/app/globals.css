@@ -543,3 +543,5 @@ a.irow:hover .row-name { color: var(--cobalt); }
 .srcs { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.7; }
 .srcs a { color: var(--cobalt); font-weight: 650; }
 .dive .cols2 .points li b { font-weight: 750; }
+.clock { width: 22px; height: 22px; flex: none; border-radius: 50%; border: 3px solid var(--cobalt); position: relative; }
+.clock::after { content: ''; position: absolute; left: 50%; top: 3px; width: 2px; height: 6px; background: var(--cobalt); box-shadow: 3px 4px 0 -0px var(--cobalt); }

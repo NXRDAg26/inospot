@@ -92,7 +92,10 @@ export async function latestDive(ticker: string): Promise<{ ready: DiveRecord | 
   const pool = await db();
   const ready = await pool.query(`select * from dives where ticker = $1 and status = 'ready' order by updated_at desc limit 1`, [t]);
   const pending = await pool.query(
-    `select * from dives where ticker = $1 and status in ('queued','running') and updated_at > now() - interval '15 minutes' order by id desc limit 1`,
+    `select * from dives where ticker = $1 and (
+       (source = 'request' and status = 'queued' and created_at > now() - interval '7 days')
+       or (source = 'live' and status in ('queued','running') and updated_at > now() - interval '15 minutes')
+     ) order by id desc limit 1`,
     [t]
   );
   return { ready: ready.rows[0] ? rowToRecord(ready.rows[0]) : null, pending: pending.rows[0] ? rowToRecord(pending.rows[0]) : null };
@@ -123,6 +126,8 @@ export async function saveReadyDive(d: Dive, source: 'scan' | 'live' = 'scan'): 
     `insert into dives (ticker, status, source, data) values ($1, 'ready', $2, $3) returning id`,
     [normTicker(d.ticker), source, d]
   );
+  // a finished dive answers any outstanding request for the same stock
+  await pool.query(`update dives set status = 'done', updated_at = now() where ticker = $1 and source = 'request' and status = 'queued'`, [normTicker(d.ticker)]);
   return r.rows[0].id;
 }
 
@@ -130,6 +135,19 @@ export async function createPendingDive(ticker: string): Promise<number> {
   const pool = await db();
   const r = await pool.query(`insert into dives (ticker, status, source, stage) values ($1, 'queued', 'live', 'Starting') returning id`, [normTicker(ticker)]);
   return r.rows[0].id;
+}
+
+export async function requestDive(ticker: string): Promise<number> {
+  const pool = await db();
+  const r = await pool.query(`insert into dives (ticker, status, source, stage) values ($1, 'queued', 'request', 'Waiting for the next research run') returning id`, [normTicker(ticker)]);
+  return r.rows[0].id;
+}
+
+export async function listRequests(): Promise<{ id: number; ticker: string; created_at: string }[]> {
+  if (!hasDb()) return [];
+  const pool = await db();
+  const r = await pool.query(`select id, ticker, created_at from dives where source = 'request' and status = 'queued' and created_at > now() - interval '7 days' order by created_at asc limit 20`);
+  return r.rows.map((x) => ({ id: x.id, ticker: x.ticker, created_at: new Date(x.created_at).toISOString() }));
 }
 
 export async function updateDive(id: number, patch: { status?: string; stage?: string; data?: Dive; error?: string }) {
